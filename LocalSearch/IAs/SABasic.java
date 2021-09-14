@@ -106,7 +106,14 @@ public class SABasic implements Search {
 	Pair<Double,Double> Avalia(GameState gs, int max_cicle,int lado,Node_LS n) throws Exception{
 		UnitTypeTable utt = new UnitTypeTable();
 		AI ai = new Interpreter(utt,n);
-		return this.playout.run(gs, lado, max_cicle, ai, adv, false);
+		Pair<Double,Double> r = new Pair<>(0.0,0.0);
+		for(int i =0;i<10;i++) {
+			Pair<Double,Double> aux =this.playout.run(gs, lado, max_cicle, ai, adv, false);
+			r.m_a+=aux.m_a;
+			r.m_b+=aux.m_b;
+		}
+		
+		return r;
 		
 	}
 	
@@ -160,7 +167,7 @@ public class SABasic implements Search {
 				v = v_vizinho;
 				
 			}
-			System.out.println(v_vizinho.m_b+"   t\t"+melhor_vizinho.translate());
+		//	System.out.println(v_vizinho.m_b+"   t\t"+melhor_vizinho.translate());
 			paraou = System.currentTimeMillis()-Tini;
 			
 			
@@ -192,7 +199,7 @@ public class SABasic implements Search {
 		long paraou = System.currentTimeMillis()-Tini;
 	
 		int cont=0;
-		while( (paraou*1.0)/1000.0 <1000) {
+		while( (paraou*1.0)/1000.0 <2000) {
 			double T = this.T0/(1+cont*this.alpha);
 			Node_LS melhor_vizinho = null ;
 			Pair<Double,Double> v_vizinho = new Pair<>(-1.0,-1.0);
@@ -214,7 +221,7 @@ public class SABasic implements Search {
 						v_vizinho=v2;	
 				}
 				paraou = System.currentTimeMillis()-Tini;
-				if((paraou*1.0)/1000.0 >1000)break;
+				if((paraou*1.0)/1000.0 >2000)break;
 			}
 		
 			
@@ -224,7 +231,7 @@ public class SABasic implements Search {
 					v = v_vizinho;
 					
 				}
-			System.out.println(v_vizinho.m_b+"   t2\t"+melhor_vizinho.translate());
+			//System.out.println(v_vizinho.m_b+"   t2\t"+melhor_vizinho.translate());
 			paraou = System.currentTimeMillis()-this.tempo_ini;
 			
 			

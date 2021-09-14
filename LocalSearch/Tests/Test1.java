@@ -38,15 +38,38 @@ import rts.units.UnitTypeTable;
 import util.Pair;
 
 public class Test1 {
-
+	static int max=6000;
 	public Test1() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static String getMap(String s) {
+		if(s.equals("0")) return "./maps/16x16/TwoBasesBarracks16x16.xml";
+		if(s.equals("1")) return "./maps/16x16/TwoBasesBarracks16x16.xml";				
+		if(s.equals("2")) return "./maps/16x16/TwoBasesBarracks16x16.xml";
+
+		
+		if(s.equals("3")) return "maps/24x24/basesWorkers24x24A.xml";
+		if(s.equals("4")) return "maps/24x24/basesWorkers24x24A.xml";
+		if(s.equals("5")) return "maps/24x24/basesWorkers24x24A.xml";
+
+		
+		if(s.equals("6")) return "maps/32x32/basesWorkers32x32A.xml";
+		if(s.equals("7")) return "maps/32x32/basesWorkers32x32A.xml";
+		if(s.equals("8")) return "maps/32x32/basesWorkers32x32A.xml";
+	
+		
+		if(s.equals("9")) { max =15000;return "maps/BroodWar/(4)BloodBath.scmB.xml";}
+		if(s.equals("10")) {max =15000;return "maps/BroodWar/(4)BloodBath.scmB.xml";}
+		if(s.equals("11")) {max =15000;return "maps/BroodWar/(4)BloodBath.scmB.xml";}
+		
+		return null;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		UnitTypeTable utt = new UnitTypeTable();
-		String path_map ="./maps/24x24/basesWorkers24x24A.xml";;
+		String path_map = getMap(args[0]);
 		PhysicalGameState pgs = PhysicalGameState.load(path_map, utt);
 		GameState gs2 = new GameState(pgs, utt);
 		
@@ -67,48 +90,107 @@ public class Test1 {
 	//	if(args[3].equals("2"))beta=100;		
 	//	if(args[3].equals("3"))beta=150;	
 		
-		AI adv = null;
+		AI adv = new CoacAI(utt);
 		String partida = null;
 		EvaluateGS eval = null;
 		Playout playout = null;
-		
-		System.out.println("antigo2 "+path_map);
-		
 		int lado=-1;
+		System.out.println("antigo2 "+path_map);
+		if(Integer.parseInt(args[2]) <10) {
+			lado=0;
+		}else {
+			lado=1;
+		}
+		
 		
 		if(args[0].equals("0")) {
-			adv = new WorkerRush(utt);
-			partida = "A3NvsWR";
-			
-			lado =0;
+		
+			if(lado==0) {
+				partida = "A3NvsCoac16";
+			}else {
+				partida ="CoacvsA3N16";
+			}
+		
 		} else if(args[0].equals("1")) {
-			adv = new RangedRush(utt);
-			partida = "A3NvsRR";
-			lado =0;
+			
+			if(lado==0) {
+				partida = "RRvsCoac16";
+			}else {
+				partida ="CoacvsRR16";
+			}
 		}else if(args[0].equals("2")) {
-			adv = new WorkerRush(utt);
-			partida = "RRvsWR";
-			lado =0;
-		}else if(args[0].equals("3")) {
-			adv = new RangedRush(utt);
-			partida = "RRvsRR";
-			lado =0;
-		}else if(args[0].equals("4")) {
-			adv = new WorkerRush(utt);
-			partida = "CoacvsWR";
-			lado =0;
+			
+			if(lado==0) {
+				partida = "CoacvsCoac16";
+			}else {
+				partida ="CoacvsCoac16";
+			}
+		} else if(args[0].equals("3")) {
+			
+			if(lado==0) {
+				partida = "A3NvsCoac24";
+			}else {
+				partida ="CoacvsA3N24";
+			}
+		
+		} else if(args[0].equals("4")) {
+	
+			if(lado==0) {
+				partida = "RRvsCoac24";
+			}else {
+				partida ="CoacvsRR24";
+			}
 		}else if(args[0].equals("5")) {
-			adv = new RangedRush(utt);
-			partida = "CoacvsRR";
-			lado =0;
+			
+			if(lado==0) {
+				partida = "CoacvsCoac24";
+			}else {
+				partida ="CoacvsCoac24";
+			}
 		}else if(args[0].equals("6")) {
-			adv = new CoacAI(utt);
-			partida = "CoacvsCoac";
-			lado =0;
-		}else if(args[0].equals("7")) {
-			adv = new CoacAI(utt);
-			partida = "CoacvsCoac";
-			lado =1;
+			
+			if(lado==0) {
+				partida = "A3NvsCoac32";
+			}else {
+				partida ="CoacvsA3N32";
+			}
+		
+		} else if(args[0].equals("7")) {
+			
+			if(lado==1) {
+				partida = "CoacvsRR32";
+			}else {
+				partida ="RRvsCoac32";
+			}
+		}else if(args[0].equals("8")) {
+		
+			if(lado==0) {
+				partida = "CoacvsCoac32";
+			}else {
+				partida ="CoacvsCoac32";
+			}
+		}else if(args[0].equals("9")) {
+			
+			if(lado==0) {
+				partida = "A3NvsCoac128";
+			}else {
+				partida ="CoacvsA3N128";
+			}
+		
+		} else if(args[0].equals("10")) {
+			
+			if(lado==1) {
+				partida = "CoacvsRR128";
+			}else {
+				partida ="RRvsCoac128";
+			}
+		}else if(args[0].equals("11")) {
+			
+			if(lado==0) {
+				partida = "CoacvsCoac128";
+			}else {
+				partida ="CoacvsCoac128";
+			}
 		}
 		
 		System.out.println(partida);
@@ -151,7 +233,7 @@ public class Test1 {
 			EstadoAcoes EAs = new EstadoAcoes(partida,true);
 			
 			
-			eval = new CabocoDagua2(EAs,lado);
+			eval = new CabocoDagua2(EAs,0);
 			playout = new SimplePlayout(eval);
 			((CabocoDagua2)eval).imprimir();
 			System.out.println("Marca2 ");
@@ -167,7 +249,7 @@ public class Test1 {
 		//if(true)return ;
 		Search search = new SABasic(false,adv,playout,1000,0.9,50,cego);
 		
-		Node n = search.run(gs2, 8000,lado);
+		Node n = search.run(gs2, max,lado);
 		System.out.println("FIM");
 		System.out.println(n.translateIndentation(0));
 	}

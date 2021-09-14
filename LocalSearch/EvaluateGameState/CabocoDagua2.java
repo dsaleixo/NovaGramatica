@@ -116,7 +116,7 @@ public class CabocoDagua2 implements EvaluateGS {
 		pont += 1*(1 - diffType(this.barrack,oraculo.barrack));	
 		pont +=1* (1 - diffType(this.saved_resource,oraculo.saved_resource));	
 		
-		return (float) (pont/9);
+		return (float) (pont/7);
 	}
 	@Override
 	public void Resert() {

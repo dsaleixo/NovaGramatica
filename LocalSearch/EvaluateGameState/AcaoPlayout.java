@@ -49,8 +49,8 @@ public class AcaoPlayout implements Playout {
         		itbroke=true;
         		break;
         	}
-        	if(player==0) cont+=compara(pa1,EAs.pa0s.get(i));
-        	else if(player ==1) cont+=compara(pa1,EAs.pa1s.get(i));
+        	 cont+=compara(pa1,EAs.pa0s.get(i));
+        	
         	
              
         }

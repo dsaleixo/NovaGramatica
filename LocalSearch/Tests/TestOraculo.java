@@ -34,7 +34,7 @@ public class TestOraculo {
 		UnitTypeTable utt = new UnitTypeTable();
 		//String path_map ="./maps/32x32/basesWorkersBarracks32x32.xml";;
 		//PhysicalGameState pgs = PhysicalGameState.load(path_map, utt);
-		EstadoAcoes EA = new EstadoAcoes("CoacvsCoac",false);
+		EstadoAcoes EA = new EstadoAcoes("A3NvsCoac24",false);
 		EA.reproduz();
 	//	Oraculo.salvar(gss, "CoacAIxCoacAI");
 	//	Oraculo.reproduz(gss);

@@ -75,7 +75,7 @@ public class OpponentPolicy implements AlmostTerminal {
 		l.add("Farthest");
 		l.add("LessHealthy");
 		l.add("MostHealthy");
-		l.add("Random");
+		
 		
 		return l;
 	

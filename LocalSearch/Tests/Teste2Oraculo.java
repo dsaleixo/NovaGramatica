@@ -32,48 +32,40 @@ public class Teste2Oraculo {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		UnitTypeTable utt = new UnitTypeTable();
-		String path_map ="./maps/32x32/basesWorkers32x32A.xml";;
+		String path_map ="maps/BroodWar/(4)BloodBath.scmB.xml";
 		PhysicalGameState pgs = PhysicalGameState.load(path_map, utt);
 		GameState gs2 = new GameState(pgs, utt);
 		
 		int num=2000;
 		
-		/*
+		
 		
 		if(args[0].equals("0")) {
-			
-			AI adv = new WorkerRush(utt);
-			AI oraculo = new A3NWithin(num, -1, 100, 8, 0.3F, 0.0F, 0.4F, 0, adv,
-					new SimpleSqrtEvaluationFunction3(), true, utt, "ManagerClosestEnemy", 3,
-						decodeScripts(utt, "1;2;3;"), "A3N");
-			EstadoAcoes EAs = new EstadoAcoes(gs2,1,5000,oraculo,adv,false,true);
-			EAs.salvar("WRvsA3N", true);
-		} else if(args[0].equals("1")) {
-			
-			AI adv = new RangedRush(utt);
-			AI oraculo = new A3NWithin(num, -1, 100, 8, 0.3F, 0.0F, 0.4F, 0, adv,
-					new SimpleSqrtEvaluationFunction3(), true, utt, "ManagerClosestEnemy", 3,
-						decodeScripts(utt, "1;2;3;"), "A3N");
-			EstadoAcoes EAs = new EstadoAcoes(gs2,1,5000,oraculo,adv,false,true);
-			EAs.salvar("RRvsA3N", true);
-		} else if(args[0].equals("2")) {
 			
 			AI adv = new CoacAI(utt);
 			AI oraculo = new A3NWithin(num, -1, 100, 8, 0.3F, 0.0F, 0.4F, 0, adv,
 					new SimpleSqrtEvaluationFunction3(), true, utt, "ManagerClosestEnemy", 3,
 						decodeScripts(utt, "1;2;3;"), "A3N");
-			EstadoAcoes EAs = new EstadoAcoes(gs2,1,5000,oraculo,adv,false,true);
-			EAs.salvar("CoacvsA3N", true);
-		}
-		*/
-	
+			EstadoAcoes EAs = new EstadoAcoes(gs2,1,15000,oraculo,adv,false,true);
+			EAs.salvar("CoacvsA3N128", true);
+		} else if(args[0].equals("1")) {
+			
+			AI adv = new CoacAI(utt);
+			AI oraculo = new A3NWithin(num, -1, 100, 8, 0.3F, 0.0F, 0.4F, 0, adv,
+					new SimpleSqrtEvaluationFunction3(), true, utt, "ManagerClosestEnemy", 3,
+						decodeScripts(utt, "1;2;3;"), "A3N");
+			EstadoAcoes EAs = new EstadoAcoes(gs2,0,15000,oraculo,adv,false,true);
+			EAs.salvar("A3NvsCoac128", true);
+		} 
+		
+		
 		//Node n = ScriptsFactory.montaCoac();
 		//System.out.print(n.translateIndentation(0));
-		AI oraculo = new CoacAI(utt);
-		AI adv = new RangedRush(utt);
+		//AI oraculo = new RangedRush(utt);
+		//AI adv = new CoacAI(utt);
 	
-		EstadoAcoes EAs = new EstadoAcoes(gs2,1,5000,oraculo,adv,true,true);
-		EAs.salvar("RRvsCoac", true);
+		//EstadoAcoes EAs = new EstadoAcoes(gs2,0,15000,oraculo,adv,true,true);
+		//EAs.salvar("RRvsCoac128", true);
 		
 		
 		
